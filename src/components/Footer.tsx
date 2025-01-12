@@ -25,6 +25,7 @@ export function Footer() {
               <li>
                 <Link 
                   href="https://docs.truenetwork.io" 
+                  target='_blank'
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   Documentation
@@ -32,10 +33,11 @@ export function Footer() {
               </li>
               <li>
                 <Link 
-                  href="#" 
+                  href="https://docs.truenetwork.io/lightpaper/overview.html" 
+                  target='_blank'
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  API Reference
+                  Lightpaper
                 </Link>
               </li>
             </ul>
@@ -45,7 +47,7 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link 
-                  href="https://github.com/truenetwork" 
+                  href="https://github.com/truenetworkio" 
                   className="text-gray-400 hover:text-white transition-colors inline-flex items-center"
                 >
                   <Github className="w-4 h-4 mr-2" />
@@ -54,7 +56,7 @@ export function Footer() {
               </li>
               <li>
                 <Link 
-                  href="https://twitter.com/truenetwork" 
+                  href="https://x.com/truenetworkio" 
                   className="text-gray-400 hover:text-white transition-colors inline-flex items-center"
                 >
                   <Twitter className="w-4 h-4 mr-2" />
@@ -63,7 +65,7 @@ export function Footer() {
               </li>
               <li>
                 <Link 
-                  href="https://t.me/truenetwork" 
+                  href="https://at.truenetwork.io/community" 
                   className="text-gray-400 hover:text-white transition-colors inline-flex items-center"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
@@ -72,7 +74,7 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
@@ -92,11 +94,11 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
         <div className="mt-12 pt-8 border-t border-gray-800">
           <p className="text-center text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} True Network. All rights reserved.
+            &copy; {new Date().getFullYear()} Jupiter Innovations Lab Inc. All rights reserved.
           </p>
         </div>
       </div>

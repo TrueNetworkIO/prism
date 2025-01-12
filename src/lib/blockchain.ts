@@ -100,7 +100,39 @@ export const decodeEvent = (event: any): FormattedEvent | null => {
               description: 'Hash of the issuer creating the attestation'
             },
             {
-              name: 'Account',
+              name: 'Attested To',
+              value: data['accountId']['Ethereum'] ?? data['accountId']['Substrate'] ?? data['accountId']['Solana'],
+              description: 'Address receiving the attestation'
+            },
+            {
+              name: 'Schema',
+              value: data['schemaHash'],
+              description: 'Schema hash for the attestation'
+            },
+            {
+              name: 'Attestation Index',
+              value: data['attestationIndex'],
+              description: 'Attestation Index for the account of this schema'
+            },
+            {
+              name: 'Attestation',
+              value: JSON.stringify(data['attestation']),
+              description: 'Attestation data'
+            }
+          ]
+        }
+      case 'credentialsmodule.AttestationUpdated':
+        return {
+          name: 'AttestationUpdated',
+          section: 'Credentials',
+          parameters: [
+            {
+              name: 'Issuer Hash',
+              value: data['issuerHash'],
+              description: 'Hash of the issuer creating the attestation'
+            },
+            {
+              name: 'Attested To',
               value: data['accountId']['Ethereum'] ?? data['accountId']['Substrate'] ?? data['accountId']['Solana'],
               description: 'Address receiving the attestation'
             },
@@ -130,6 +162,18 @@ export const decodeEvent = (event: any): FormattedEvent | null => {
               name: 'Algorithm ID',
               value: data['algorithm_id'],
               description: 'Unique identifier for the algorithm'
+            }
+          ]
+        }
+      case 'algorithmsmodule.AlgoResult':
+        return {
+          name: 'AlgoResult',
+          section: 'Algorithms',
+          parameters: [
+            {
+              name: 'Algorithm Result',
+              value: data['result'],
+              description: 'Result of the reputation algorithm.'
             }
           ]
         }

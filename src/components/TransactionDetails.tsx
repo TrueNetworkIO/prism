@@ -60,7 +60,7 @@ export function TransactionDetails({ hash }: TransactionDetailsProps) {
               const decodedEvent = decodeEvent(eventHuman);
               if (decodedEvent && signer) {
                 decodedEvent.parameters.splice(0, 0, {
-                  name: "Signer",
+                  name: "Transaction Signer",
                   value: signer,
                   description: 'Account that signed the transaction',
                 })

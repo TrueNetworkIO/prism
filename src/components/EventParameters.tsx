@@ -5,6 +5,7 @@ import { copyToClipboard } from '../lib/utils'
 import { truncateHash } from '@/lib/format'
 import { ISSUER_PALLET_NAME } from '@truenetworkio/sdk/dist/pallets/issuer/state.js'
 import { getTrueNetworkInstance } from '../../true-network/true.config'
+import { getWalletWithType } from '@truenetworkio/sdk'
 
 interface EventParametersProps {
   parameters: Array<{
@@ -41,6 +42,36 @@ export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) 
       getIssuerName(issuer.value)
     }
   }, [parameters])
+
+  const getParameterComponent = (param: { name: string, value: string, description: string }) => {
+    if (param.name === "Issuer Hash" && issuerName) {
+      return <code className="text-xs sm:text-sm bg-[#B3D9FE]/30 rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">
+        <span className='font-bold'>{issuerName}</span> {truncateHash(param.value, 4)}
+      </code>
+    }
+
+    if (param.name === "Attested To") {
+      const wallet = getWalletWithType(param.value) as any
+
+      let src = ""
+      if (wallet['Ethereum']) {
+        src = "/wallets/eth.png"
+      } else if (wallet['Solana']) {
+        src = "/wallets/sol.png"
+      } else if (wallet['Substrate']) {
+        src = "/wallets/dot.png"
+      }
+
+      return <div className='flex flex-row gap-2 justify-center items-center'>
+        <img height={12} width={12} src={src} alt="w" />
+        <code className="text-xs sm:text-sm bg-[#B3D9FE]/30 rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">
+          {truncateHash(param.value, 8)}
+        </code>
+      </div>
+    }
+
+    return <code className="text-xs sm:text-sm bg-[#B3D9FE]/30 rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">{truncateHash(param.value, 8)}</code>
+  }
 
   return (
     <div className="grid gap-2 sm:gap-4">
@@ -80,9 +111,8 @@ export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) 
               );
             }) :
               <div className='flex flex-row justify-end gap-2'>
-                <code className="text-xs sm:text-sm bg-[#B3D9FE]/30 rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">
-                  {param.name == "Issuer Hash" && issuerName ? `${issuerName} (${truncateHash(param.value, 4)})` : truncateHash(param.value, 8)}
-                </code>
+
+                {getParameterComponent(param)}
 
                 <button
                   onClick={() => copyToClipboard(param.value)}
