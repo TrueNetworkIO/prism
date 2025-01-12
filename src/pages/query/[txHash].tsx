@@ -1,24 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { SearchBar } from '../components/SearchBar'
-// import { RecentEventsTable } from '../components/RecentEventsTable'
-import { Header } from '../components/Header'
-import { Footer } from '../components/Footer'
-import { useRouter } from 'next/router'
+import { SearchBar } from '../../components/SearchBar'
+import { TransactionDetails } from '../../components/TransactionDetails'
+import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
+import { useParams } from 'next/navigation'
 import Head from 'next/head'
 
-export default function Home() {
-  const { push } = useRouter()
+export default function QueryPage() {
+  const params = useParams<{ txHash: string }>()
+  const [searchedHash, setSearchedHash] = useState<string | null>(null)
 
-  const setSearchedHash = (tx: string) => {
-    push(`/query/${tx}`)
-  }
+  useEffect(() => {
+    if (params?.txHash) {
+      setSearchedHash(params.txHash)
+    }
+  }, [params])
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#F2F0ED] to-[#B3D9FE] text-[#03101D] font-sans">
       <Header />
       <Head>
-        <title>Prism | Explore Attestations and Reputations on True Network </title>
+        <title>Transaction Query | Prism | True Network</title>
       </Head>
       <main className="flex-1 container mx-auto px-4 py-12">
         <h1 className="text-5xl text-center mb-8 text-[#FF4000] flex flex-row items-center justify-center">
@@ -33,6 +36,7 @@ export default function Home() {
         <p className='mb-8 text-center'>Explore the on-chain attestations &amp; reputation algorithms on the True Network.</p>
         <div className="max-w-3xl mx-auto">
           <SearchBar onSearch={setSearchedHash} />
+          {searchedHash && <TransactionDetails hash={searchedHash} />}
         </div>
       </main>
       <Footer />

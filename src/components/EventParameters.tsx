@@ -81,7 +81,7 @@ export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) 
             }) :
               <div className='flex flex-row justify-end gap-2'>
                 <code className="text-xs sm:text-sm bg-[#B3D9FE]/30 rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">
-                  {param.name == "Issuer Hash" ? `${issuerName} (${truncateHash(param.value, 4)})` : truncateHash(param.value, 8)}
+                  {param.name == "Issuer Hash" && issuerName ? `${issuerName} (${truncateHash(param.value, 4)})` : truncateHash(param.value, 8)}
                 </code>
 
                 <button
