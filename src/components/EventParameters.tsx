@@ -78,7 +78,7 @@ export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) 
       {parameters.map((param) => param.name !== "Attestation" && (
         <div
           key={param.name}
-          className="flex flex-col sm:flex-row sm:items-center justify-between p-2 sm:p-3 bg-white/50 dark:bg-white/10 rounded-lg backdrop-blur-sm"
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 sm:p-3 bg-white/50 dark:bg-white/10 rounded-lg backdrop-blur-sm"
         >
           <TooltipProvider>
             <Tooltip>

@@ -25,7 +25,7 @@ export const EventTabs: React.FC<EventTabsProps> = ({
 }) => {
   return (
     <Tabs defaultValue="all" className="space-y-4 sm:space-y-6">
-      <TabsList className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-transparent">
+      <TabsList className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-transparent mb-12 md:mb-0">
         <TabsTrigger 
           value="all"
           className="text-xs sm:text-sm py-2 px-3 bg-white/50 dark:bg-white/5 data-[state=active]:bg-[#FF4000] data-[state=active]:text-white"
