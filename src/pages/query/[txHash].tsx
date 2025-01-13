@@ -9,7 +9,7 @@ import Head from 'next/head'
 
 export default function QueryPage() {
   const params = useParams<{ txHash: string }>()
-  const [searchedHash, setSearchedHash] = useState<string | null>(null)
+  const [searchedHash, setSearchedHash] = useState<string | undefined>(undefined)
 
   useEffect(() => {
     if (params?.txHash) {
@@ -35,7 +35,7 @@ export default function QueryPage() {
         </h1>
         <p className='mb-8 text-center'>Explore the on-chain attestations &amp; reputation algorithms on the True Network.</p>
         <div className="max-w-3xl mx-auto">
-          <SearchBar onSearch={setSearchedHash} />
+          <SearchBar value={searchedHash} onSearch={setSearchedHash} />
           {searchedHash && <TransactionDetails hash={searchedHash} />}
         </div>
       </main>

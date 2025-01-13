@@ -1,12 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
 
 interface SearchBarProps {
+  value?: string
   onSearch: (hash: string) => void
 }
 
-export function SearchBar({ onSearch }: SearchBarProps) {
+export function SearchBar({ onSearch, value }: SearchBarProps) {
   const [hash, setHash] = useState('')
+
+  useEffect(() => {
+    if (value) {
+      setHash(value)
+    }
+  }, [value])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
