@@ -25,7 +25,6 @@ export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) 
       // Fetch issuer name from the issuer's hash
       const api = await getTrueNetworkInstance()
 
-      console.log('issuerhash', hash)
       const data = await api.network.query[ISSUER_PALLET_NAME].issuers(hash)
 
       const humanData = data.toHuman() as any

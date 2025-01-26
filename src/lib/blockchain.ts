@@ -3,11 +3,6 @@ import { ApiPromise, WsProvider } from '@polkadot/api'
 import { TrueApi } from '@truenetworkio/sdk'
 import { CREDENTIALS_PALLET_NAME } from '@truenetworkio/sdk/dist/pallets/credentials/state'
 
-export const getBlockchainApi = async () => {
-  const wsProvider = new WsProvider('wss://raman.truenetwork.io/ws')
-  return await ApiPromise.create({ provider: wsProvider })
-}
-
 export const getSchemaFromHash = async (api: TrueApi, hash: string) => {
   try {
     const response = await api.network.query[CREDENTIALS_PALLET_NAME].schemas(hash)
@@ -178,7 +173,6 @@ export const decodeEvent = (event: any): FormattedEvent | null => {
           ]
         }
       default:
-        console.log(sectionName, method)
         return null
     }
   } catch (error) {

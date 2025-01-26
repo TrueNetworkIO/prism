@@ -52,11 +52,6 @@ export function TransactionDetails({ hash }: TransactionDetailsProps) {
               // Extract the signer
               const signer = extrinsic?.signer?.toString() || null;
 
-              console.log(
-                `Event: ${eventName}`,
-                `Signer: ${signer}`,
-                `Extrinsic Index: ${extrinsicIndex}`
-              );
               const decodedEvent = decodeEvent(eventHuman);
               if (decodedEvent && signer) {
                 decodedEvent.parameters.splice(0, 0, {
@@ -93,7 +88,6 @@ export function TransactionDetails({ hash }: TransactionDetailsProps) {
 
             if (event.name === EVENT_TYPES.ATTESTATION) {
               const schemaHash = event.parameters[3].value;
-              console.log('schemaHash', schemaHash, event.parameters)
               if (schemaHash) {
                 try {
                   const schema = (await getSchemaFromHash(trueApi, schemaHash)) as any[];

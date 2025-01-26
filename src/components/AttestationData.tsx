@@ -17,7 +17,6 @@ export const AttestationData: React.FC<AttestationDataProps> = ({ data }) => {
       <div className="grid gap-2 sm:gap-4">
         {data.schema.map((field, idx) => {
           const value = data.values[idx]
-          console.log('field', field, value)
           return (
             <div
               key={field.name}

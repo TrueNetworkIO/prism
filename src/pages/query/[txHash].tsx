@@ -6,6 +6,7 @@ import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
 import { useParams } from 'next/navigation'
 import Head from 'next/head'
+import { getTrueNetworkInstance } from '../../../true-network/true.config'
 
 export default function QueryPage() {
   const params = useParams<{ txHash: string }>()
@@ -14,8 +15,14 @@ export default function QueryPage() {
   useEffect(() => {
     if (params?.txHash) {
       setSearchedHash(params.txHash)
+
+      getTrueNetworkInstance().then((api) => {
+        if (!api.network.isConnected) {
+          api.network.connect()
+        }
+      })
     }
-  }, [params])
+  }, [params?.txHash])
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#F2F0ED] to-[#B3D9FE] text-[#03101D] font-sans">

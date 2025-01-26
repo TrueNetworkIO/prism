@@ -22,7 +22,6 @@ export const TransactionHeader: React.FC<TransactionHeaderProps> = ({ hash }) =>
       const time = (timestamp).toHuman()!.toString().replaceAll(',', '')
       
       const blockTimestamp = (parseInt(time))
-      await trueApi.close()
       setTimestamp(blockTimestamp)
     }
     fetchTimestamp()
