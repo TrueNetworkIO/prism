@@ -20,14 +20,17 @@ export default function Home() {
         <title>Prism | Explore Attestations and Reputations on True Network </title>
       </Head>
       <main className="flex-1 container mx-auto px-4 py-12">
-        <h1 className="text-3xl lg:text-4xl xl:text-5xl text-center mb-8 text-[#FF4000] flex flex-row items-center justify-center">
-          <Image
-            src="/logo.png"
-            alt="True Network"
-            width={960}
-            height={240}
-            className="h-20 w-auto"
-          /> prism
+        <h1 className="text-xl md:text-2xl lg:text-3xl text-center mb-8 flex flex-row items-center justify-center gap-0">
+          <div className="relative w-40 h-10 sm:w-48 sm:h-12 md:w-56 md:h-14 lg:w-64 lg:h-16">
+            <Image
+              src="/logo.png"
+              alt="True Network"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+          <span className="text-[#FF4000]">prism</span>
         </h1>
         <p className='mb-8 text-center'>Explore the on-chain attestations &amp; reputation algorithms on the True Network.</p>
         <div className="max-w-3xl mx-auto">
@@ -39,4 +42,3 @@ export default function Home() {
     </div>
   )
 }
-
