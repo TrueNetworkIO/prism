@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   publicRuntimeConfig: {
     NProgressShowSpinner: true,
     pageTitle: "Prism | True Network",
-    pageDescription: "Explore the on-chain attestations & reputation algorithms on the True Network.",
+    pageDescription: "Explore on-chain attestations & reputation algorithms on the True Network.",
   }
 };
 

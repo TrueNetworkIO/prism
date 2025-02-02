@@ -34,7 +34,7 @@ export default function Home() {
         </h1> */}
         <div className="max-w-3xl mx-auto">
           <span className='flex flex-1'>
-            <p className='max-w-3xl font-nimbus text-[20px] leading-[20px] sm:text-[28px] sm:leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[40px] lg:leading-[40px] mb-8'>Explore the on-chain attestations &amp; reputation algorithms on the <span className='text-[#ff4000]'>True Network.</span></p>
+            <p className='max-w-3xl font-nimbus text-[20px] leading-[20px] sm:text-[28px] sm:leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[40px] lg:leading-[40px] mb-8'>Explore on-chain attestations &amp; reputation algorithms on the <span className='text-[#ff4000]'>True Network</span></p>
           </span>
           <SearchBar onSearch={setSearchedHash} />
           <RecentEventsTable />
