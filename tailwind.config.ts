@@ -8,8 +8,12 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      'nimbus': ['nimbus', 'sans-serif'], 
+    },
   	extend: {
   		colors: {
+        eventsBackground: 'rgba(241, 240, 236, 0.66)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

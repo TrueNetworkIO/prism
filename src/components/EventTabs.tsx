@@ -28,25 +28,25 @@ export const EventTabs: React.FC<EventTabsProps> = ({
       <TabsList className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-transparent mb-12 md:mb-0">
         <TabsTrigger 
           value="all"
-          className="text-xs sm:text-sm py-2 px-3 bg-white/50 dark:bg-white/5 data-[state=active]:bg-[#FF4000] data-[state=active]:text-white"
+          className="text-xs sm:text-sm py-2 px-3 bg-white/50 dark:bg-white/5 data-[state=active]:bg-[#0D0B0C] data-[state=active]:text-white"
         >
           All ({events.length})
         </TabsTrigger>
         <TabsTrigger 
           value="attestations"
-          className="text-xs sm:text-sm py-2 px-3 bg-white/50 dark:bg-white/5 data-[state=active]:bg-[#FF4000] data-[state=active]:text-white"
+          className="text-xs sm:text-sm py-2 px-3 bg-white/50 dark:bg-white/5 data-[state=active]:bg-[#0D0B0C] data-[state=active]:text-white"
         >
           Attestations ({groupedEvents.attestations.length})
         </TabsTrigger>
         <TabsTrigger 
           value="issuers"
-          className="text-xs sm:text-sm py-2 px-3 bg-white/50 dark:bg-white/5 data-[state=active]:bg-[#FF4000] data-[state=active]:text-white"
+          className="text-xs sm:text-sm py-2 px-3 bg-white/50 dark:bg-white/5 data-[state=active]:bg-[#0D0B0C] data-[state=active]:text-white"
         >
           Issuers ({groupedEvents.issuers.length})
         </TabsTrigger>
         <TabsTrigger 
           value="schemas"
-          className="text-xs sm:text-sm py-2 px-3 bg-white/50 dark:bg-white/5 data-[state=active]:bg-[#FF4000] data-[state=active]:text-white"
+          className="text-xs sm:text-sm py-2 px-3 bg-white/50 dark:bg-white/5 data-[state=active]:bg-[#0D0B0C] data-[state=active]:text-white"
         >
           Schemas ({groupedEvents.schemas.length})
         </TabsTrigger>

@@ -44,7 +44,7 @@ export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) 
 
   const getParameterComponent = (param: { name: string, value: string, description: string }) => {
     if (param.name === "Issuer Hash" && issuerName) {
-      return <code className="text-xs sm:text-sm bg-[#B3D9FE]/30 rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">
+      return <code className="text-xs sm:text-sm bg-[#DBEAFE] rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">
         <span className='font-bold'>{issuerName}</span> {truncateHash(param.value, 4)}
       </code>
     }
@@ -63,13 +63,13 @@ export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) 
 
       return <div className='flex flex-row gap-2 justify-center items-center'>
         <img height={12} width={12} src={src} alt="w" />
-        <code className="text-xs sm:text-sm bg-[#B3D9FE]/30 rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">
+        <code className="text-xs sm:text-sm bg-[#DBEAFE] rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">
           {truncateHash(param.value, 8)}
         </code>
       </div>
     }
 
-    return <code className="text-xs sm:text-sm bg-[#B3D9FE]/30 rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">{truncateHash(param.value, 8)}</code>
+    return <code className="text-xs sm:text-sm bg-[#DBEAFE] rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">{truncateHash(param.value, 8)}</code>
   }
 
   return (

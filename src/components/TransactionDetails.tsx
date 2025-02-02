@@ -155,7 +155,7 @@ export function TransactionDetails({ hash }: TransactionDetailsProps) {
   }
 
   return (
-    <Card className="bg-white/80 dark:bg-[#03101D]/80 backdrop-blur-md shadow-lg rounded-2xl overflow-hidden border-0">
+    <Card className="bg-white dark:bg-[#03101D]/80 backdrop-blur-md shadow-lg rounded-lg overflow-hidden border-0">
       <TransactionHeader hash={hash} />
       <Separator className="opacity-50" />
       <CardContent className="p-4 sm:p-6">

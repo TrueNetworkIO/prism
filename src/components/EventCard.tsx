@@ -25,17 +25,17 @@ export const EventCard: React.FC<EventCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="relative bg-gradient-to-br from-[#FF9ECF]/10 to-transparent dark:from-white/5 p-2 sm:p-4 rounded-xl border border-[#FF9ECF]/20"
+      className="relative bg-eventsBackground p-2 sm:p-4 rounded-lg"
     >
       <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-[#FF9ECF]/10 dark:bg-white/5 rounded-full blur-3xl -z-10" />
       
       <div className="flex items-center justify-between mb-3 sm:mb-6">
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="p-1 sm:p-2 bg-[#FF4000]/10 rounded-lg">
+          <div className="p-1 sm:p-2 bg-white rounded-lg">
             <FileText size={16} className="sm:w-5 sm:h-5 text-[#FF4000]" />
           </div>
           <h3 className="text-sm sm:text-xl font-semibold text-[#03101D] dark:text-white">
-            {event.section}: <span className="text-[#FF4000]">{event.name}</span>
+            {event.section}: <span className="">{event.name}</span>
           </h3>
         </div>
         <Button

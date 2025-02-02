@@ -219,10 +219,10 @@ export function RecentEventsTable() {
   }
 
   return (
-    <Card className="bg-white shadow-lg rounded-3xl overflow-hidden">
+    <Card className="bg-white shadow-lg rounded-xl overflow-hidden">
       <CardHeader className="flex flex-row items-start justify-between space-y-0 p-8 md:pb-8 pb-2">
         <div className="flex flex-col gap-3">
-          <CardTitle className="text-[#FF4000] text-xl font-bold md:text-2xl">
+          <CardTitle className="text-xl font-bold md:text-2xl">
             Live Network Events
           </CardTitle>
           <p className="text-gray-500 text-xs md:text-base">
@@ -230,7 +230,7 @@ export function RecentEventsTable() {
           </p>
         </div>
         <Badge 
-          className={`${!loading ? 'bg-green-100 text-green-800 hover:bg-green-100 hover:text-green-800' : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100 hover:text-yellow-800'} px-4 py-2 text-sm font-normal rounded-md transition-colors duration-300 hidden md:block`}
+          className={`${!loading ? 'bg-green-100 text-green-800 hover:bg-green-100 hover:text-green-800' : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100 hover:text-yellow-800'} text-sm font-normal rounded-md transition-colors duration-300 hidden md:block`}
         >
           <div className="flex items-center gap-2 text-xs md:text-sm">
             {loading && <Loader2 className="h-3 w-3 animate-spin" />}

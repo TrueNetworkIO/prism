@@ -10,8 +10,8 @@ interface AttestationDataProps {
 
 export const AttestationData: React.FC<AttestationDataProps> = ({ data }) => {
   return (
-    <div className="mt-3 sm:mt-6 border-t border-[#FF9ECF]/20 pt-3 sm:pt-6">
-      <h4 className="text-sm sm:text-lg font-semibold mb-2 sm:mb-4 text-[#FF4000]">
+    <div className="mt-3 sm:mt-6 pt-3 sm:pt-6">
+      <h4 className="text-sm sm:text-lg font-semibold mb-2 sm:mb-4">
         Attestation Data
       </h4>
       <div className="grid gap-2 sm:gap-4">
@@ -22,8 +22,8 @@ export const AttestationData: React.FC<AttestationDataProps> = ({ data }) => {
               key={field.name}
               className="p-2 sm:p-3 bg-white/50 dark:bg-white/5 rounded-lg border border-[#FF4000]/10 hover:border-[#FF4000]/20 transition-colors"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <div className="flex items-center gap-2 mb-1 sm:mb-0">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-2">
                   {React.createElement(getIconForField(field.name), {
                     className: "w-4 h-4 sm:w-5 sm:h-5 text-[#FF4000]"
                   })}
@@ -34,7 +34,7 @@ export const AttestationData: React.FC<AttestationDataProps> = ({ data }) => {
                     {field.type}
                   </Badge>
                 </div>
-                <div className="font-mono text-xs sm:text-sm text-[#03101D] dark:text-white">
+                <div className="font-mono text-xs sm:text-sm text-[#03101D] dark:text-white mt-1 sm:mt-0">
                   {getDataTypeComponent(field.type, value)}
                 </div>
               </div>

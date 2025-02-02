@@ -31,17 +31,15 @@ export const TransactionHeader: React.FC<TransactionHeaderProps> = ({ hash }) =>
     <div>
       <CardHeader className="space-y-2 sm:space-y-4 p-4 sm:p-6">
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="h-6 w-1 sm:h-8 sm:w-1 bg-[#FF4000] rounded-full" />
           <CardTitle className="text-xl sm:text-3xl font-bold text-[#03101D] dark:text-white">
             Transaction Details
           </CardTitle>
         </div>
         <CardDescription className="space-y-2">
           <div className="flex items-center gap-2 text-[#062107] dark:text-[#B3D9FE] text-xs sm:text-sm">
-            <Hash size={12} className="shrink-0 sm:w-4 sm:h-4" />
             <span>Transaction Hash</span>
           </div>
-          <div className="flex items-center gap-2 p-2 sm:p-3 bg-[#C2EBC3]/30 dark:bg-white/10 rounded-lg group">
+          <div className="flex items-center gap-2 p-2 sm:p-3 bg-[#DCFCE7] rounded-lg group">
             <code className="font-mono text-xs sm:text-sm flex-1 break-all text-[#03101D] dark:text-white">
               {hash}
             </code>
@@ -56,10 +54,9 @@ export const TransactionHeader: React.FC<TransactionHeaderProps> = ({ hash }) =>
         </CardDescription>
         {timestamp && <CardDescription className="space-y-2">
           <div className="flex items-center gap-2 text-[#062107] dark:text-[#B3D9FE] text-xs sm:text-sm">
-            <Clock size={12} className="shrink-0 sm:w-4 sm:h-4" />
             <span>Timestamp</span>
           </div>
-          <div className="flex items-center gap-2 p-2 sm:p-3 bg-[#C2EBC3]/30 dark:bg-white/10 rounded-lg group">
+          <div className="flex items-center gap-2 p-2 sm:p-3 bg-[#DCFCE7] dark:bg-white/10 rounded-lg group">
             <code className="flex flex-row w-100 justify-between flex-1 font-mono text-xs sm:text-sm flex-1 break-all text-[#03101D] dark:text-white">
               <span>{formatDateTime(timestamp ?? Date.now())}</span>
               <span>{formatTimeAgo(timestamp ?? Date.now())}</span>

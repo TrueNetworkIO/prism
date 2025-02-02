@@ -31,7 +31,7 @@ export default function QueryPage() {
         <title>Transaction Query | Prism | True Network</title>
       </Head>
       <main className="flex-1 container mx-auto px-4 py-12">
-        <h1 className="text-5xl text-center mb-8 text-[#FF4000] flex flex-row items-center justify-center">
+        {/* <h1 className="text-5xl text-center mb-8 text-[#FF4000] flex flex-row items-center justify-center">
           <Image
             src="/logo.png"
             alt="True Network"
@@ -40,8 +40,11 @@ export default function QueryPage() {
             className="h-20 w-auto"
           /> prism
         </h1>
-        <p className='mb-8 text-center'>Explore the on-chain attestations &amp; reputation algorithms on the True Network.</p>
+        <p className='mb-8 text-center'>Explore the on-chain attestations &amp; reputation algorithms on the True Network.</p> */}
         <div className="max-w-3xl mx-auto">
+          <span className='flex flex-1'>
+            <p className='max-w-3xl font-nimbus text-[20px] leading-[20px] sm:text-[28px] sm:leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[40px] lg:leading-[40px] mb-8'>Explore the on-chain attestations &amp; reputation algorithms on the <span className='text-[#ff4000]'>True Network.</span></p>
+          </span>
           <SearchBar value={searchedHash} onSearch={setSearchedHash} />
           {searchedHash && <TransactionDetails hash={searchedHash} />}
         </div>
