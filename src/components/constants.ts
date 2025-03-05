@@ -2,7 +2,8 @@ export const FILTERED_EVENTS = [
   "issuersModule.IssuerCreated",
   'credentialsModule.SchemaCreated',
   "credentialsModule.AttestationCreated",
-  'algorithmsModule.AlgorithmAdded'
+  'algorithmsModule.AlgorithmAdded',
+  'balances.Transfer'
 ] as string[]
 
 export const EVENT_TYPES = {
