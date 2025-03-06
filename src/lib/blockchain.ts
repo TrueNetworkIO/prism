@@ -13,6 +13,60 @@ export const getSchemaFromHash = async (api: TrueApi, hash: string) => {
     return null
   }
 }
+function formatSubstrateBalance(rawBalance: any, decimals = 12) {
+  // Handle different input types
+  let bigValue;
+
+  try {
+    // Check if the input is already a BigInt
+    if (typeof rawBalance === 'bigint') {
+      bigValue = rawBalance;
+    }
+    // Handle hex string (common in Substrate)
+    else if (typeof rawBalance === 'string' && rawBalance.startsWith('0x')) {
+      bigValue = BigInt(rawBalance);
+    }
+    // Handle regular string or number
+    else {
+      bigValue = BigInt(rawBalance.toString().replace(/,/g, ''));
+    }
+
+    // Convert to a string for precise decimal manipulation
+    const stringValue = bigValue.toString();
+
+    // If the value is smaller than the decimal places
+    if (stringValue.length <= decimals) {
+      const paddedValue = stringValue.padStart(decimals, '0');
+      const decimalPart = paddedValue.slice(0, 4).replace(/0+$/, '');
+
+      if (decimalPart === '') {
+        return "0";
+      }
+      return `0.${decimalPart}`;
+    }
+
+    // Split into whole and decimal parts
+    const wholePartStr = stringValue.slice(0, stringValue.length - decimals) || '0';
+    const decimalPartStr = stringValue.slice(stringValue.length - decimals);
+
+    // Format the whole part with commas
+    const wholePart = parseInt(wholePartStr).toLocaleString();
+
+    // Take up to 4 decimal places and remove trailing zeros
+    const decimalPart = decimalPartStr.padStart(decimals, '0').slice(0, 4).replace(/0+$/, '');
+
+    // Return formatted result
+    if (decimalPart === '') {
+      return wholePart;
+    }
+    return `${wholePart}.${decimalPart}`;
+
+  } catch (error) {
+    console.error("Error formatting balance:", error);
+    // Return a fallback value or the original to prevent NaN
+    return "Error: Invalid balance format";
+  }
+}
 
 export const parseSchemaString = (schemaStr: any[]): SchemaField[] => {
   return schemaStr.map(field => ({
@@ -22,12 +76,46 @@ export const parseSchemaString = (schemaStr: any[]): SchemaField[] => {
 }
 
 
-export const decodeEvent = (event: any): FormattedEvent | null => {
+export const decodeEvent = (event: any, api: ApiPromise): FormattedEvent | null => {
   try {
     const { section, method, data } = event
     const sectionName = section.toLowerCase()
 
     switch (`${sectionName}.${method}`) {
+      case 'balances.Unreserved':
+        return {
+          name: 'Unreserved',
+          section: 'Balances',
+          parameters: [
+            {
+              name: 'Who',
+              value: data['who'],
+              description: 'Account with funds reserved'
+            },
+            {
+              name: 'Amount',
+              value: formatSubstrateBalance(data['amount'].toString()) + ' TRUE',
+              description: 'Amount reserved'
+            }
+          ]
+        };
+      case 'balances.Reserved':
+        return {
+          name: 'Reserved',
+          section: 'Balances',
+          parameters: [
+            {
+              name: 'Who',
+              value: data['who'],
+              description: 'Account with funds reserved'
+            },
+            {
+              name: 'Amount',
+              value: formatSubstrateBalance(data['amount'].toString()) + ' TRUE',
+              description: 'Amount reserved'
+            }
+          ]
+        };
       case 'balances.Transfer':
         return {
           name: 'Transfer',
@@ -45,8 +133,8 @@ export const decodeEvent = (event: any): FormattedEvent | null => {
             },
             {
               name: 'Amount',
-              value: (data['amount'] / 12).toFixed(4),
-              description: 'Controller accounts that manages the issuer'
+              value: formatSubstrateBalance(data['amount'].toString()) + ' TRUE',
+              description: 'Amount transferred'
             }
           ]
         }
@@ -171,6 +259,73 @@ export const decodeEvent = (event: any): FormattedEvent | null => {
               description: 'Result of the reputation algorithm.'
             }
           ]
+        }
+      // Add to your decodeEvent function in blockchain.ts
+      case 'system.ExtrinsicFailed':
+        try {
+          const dispatchError = data.dispatchError;
+          let errorInfo: any = { section: 'Unknown', method: 'Unknown', description: 'Unknown error' };
+
+          // Handle module errors (from custom pallets)
+          if (dispatchError.isModule) {
+            // This line assumes you have access to the API instance
+            // You might need to pass it as a parameter to decodeEvent
+            const decoded = api.registry.findMetaError(dispatchError.asModule);
+            errorInfo = {
+              section: decoded.section,
+              name: decoded.method,
+              description: decoded.docs ? decoded.docs.join(' ') : 'No details available'
+            };
+          }
+          // Handle other error types
+          else if (dispatchError.isToken) {
+            errorInfo = {
+              section: 'Token',
+              name: dispatchError.asToken.type,
+              description: 'Token error'
+            };
+          } else if (dispatchError.isArithmetic) {
+            errorInfo = {
+              section: 'Arithmetic',
+              name: dispatchError.asArithmetic.type,
+              description: 'Arithmetic error'
+            };
+          }
+
+          return {
+            name: 'ExtrinsicFailed',
+            section: 'System',
+            parameters: [
+              {
+                name: 'Error',
+                value: `${errorInfo.section}.${errorInfo.name}`,
+                description: errorInfo.description
+              },
+              {
+                name: 'Details',
+                value: JSON.stringify(dispatchError),
+                description: 'Technical error details'
+              }
+            ]
+          };
+        } catch (error) {
+          console.error('Error decoding dispatch error:', error);
+          return {
+            name: 'ExtrinsicFailed',
+            section: 'System',
+            parameters: [
+              {
+                name: 'Error',
+                value: 'Unknown',
+                description: 'Failed to decode the error'
+              },
+              {
+                name: 'Details',
+                value: JSON.stringify(data.dispatchError),
+                description: 'Raw error data'
+              }
+            ]
+          };
         }
       default:
         return null

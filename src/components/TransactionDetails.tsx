@@ -52,7 +52,7 @@ export function TransactionDetails({ hash }: TransactionDetailsProps) {
               // Extract the signer
               const signer = extrinsic?.signer?.toString() || null;
 
-              const decodedEvent = decodeEvent(eventHuman);
+              const decodedEvent = decodeEvent(eventHuman, trueApi.network);
               if (decodedEvent && signer) {
                 decodedEvent.parameters.splice(0, 0, {
                   name: "Transaction Signer",
@@ -63,7 +63,7 @@ export function TransactionDetails({ hash }: TransactionDetailsProps) {
               return decodedEvent;
             }
 
-            return decodeEvent(eventHuman);
+            return decodeEvent(eventHuman, trueApi.network);
           })
           .filter((event: any): event is FormattedEvent => event !== null);
 

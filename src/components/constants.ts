@@ -3,7 +3,10 @@ export const FILTERED_EVENTS = [
   'credentialsModule.SchemaCreated',
   "credentialsModule.AttestationCreated",
   'algorithmsModule.AlgorithmAdded',
-  'balances.Transfer'
+  'balances.Transfer',
+  'balances.Reserved',
+  'balances.Unreserved',
+  'system.ExtrinsicFailed'
 ] as string[]
 
 export const EVENT_TYPES = {

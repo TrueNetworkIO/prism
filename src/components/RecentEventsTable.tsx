@@ -124,7 +124,7 @@ export function RecentEventsTable() {
                 const extrinsicIndex = phase.asApplyExtrinsic.toNumber()
                 const extrinsic = extrinsics[extrinsicIndex]
                 const signer = extrinsic?.signer?.toString() || null
-                const decodedEvent = decodeEvent(eventHuman)
+                const decodedEvent = decodeEvent(eventHuman, trueApi.network)
 
                 if (!signer) return null
                 return { ...decodedEvent, signer }
