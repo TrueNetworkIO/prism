@@ -71,7 +71,7 @@ export function TransactionDetails({ hash }: TransactionDetailsProps) {
         const eventsWithAttestations = await Promise.all(
           formattedEvents.map(async (event: any) => {
             if (event.name === EVENT_TYPES.SCHEMA) {
-              const schemaData = event.parameters[1].value;
+              const schemaData = event.parameters[2].value;
               if (schemaData) {
                 try {
                   return {

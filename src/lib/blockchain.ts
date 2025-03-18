@@ -169,6 +169,11 @@ export const decodeEvent = (event: any, api: ApiPromise): FormattedEvent | null 
               name: 'Schema Hash',
               value: data['schemaHash'],
               description: 'Unique hash identifying the schema'
+            },
+            {
+              name: 'Schema',
+              value: JSON.stringify(data['schema']),
+              description: 'Schema structure created on-chain'
             }
           ]
         }

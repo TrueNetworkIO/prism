@@ -11,7 +11,7 @@ interface SchemaDataProps {
 export const SchemaData: React.FC<SchemaDataProps> = ({ data }) => {
   return (
     <div className="mt-3 sm:mt-6 border-t border-[#FF9ECF]/20 pt-3 sm:pt-6">
-      <h4 className="text-sm sm:text-lg font-semibold mb-2 sm:mb-4 text-[#FF4000]">
+      <h4 className="text-sm sm:text-lg font-semibold mb-2 sm:mb-4">
         Schema Structure
       </h4>
       <div className="grid gap-2 sm:gap-4">

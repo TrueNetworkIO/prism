@@ -40,6 +40,15 @@ export function Footer() {
                   Lightpaper
                 </Link>
               </li>
+              <li>
+                <Link 
+                  href="https://wiki.truenetwork.io/" 
+                  target='_blank'
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Wiki Blogs
+                </Link>
+              </li>
             </ul>
           </div>
           <div>

@@ -15,6 +15,8 @@ interface EventParametersProps {
   }>
 }
 
+const BLOCKED_PARAMETERS = ["Attestation", "Schema"]
+
 export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) => {
 
   const [issuerName, setIssuerName] = React.useState<string | null>(null)
@@ -74,7 +76,7 @@ export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) 
 
   return (
     <div className="grid gap-2 sm:gap-4">
-      {parameters.map((param) => param.name !== "Attestation" && (
+      {parameters.map((param) => !BLOCKED_PARAMETERS.includes(param.name) && (
         <div
           key={param.name}
           className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 sm:p-3 bg-white/50 dark:bg-white/10 rounded-lg backdrop-blur-sm"
