@@ -1,5 +1,5 @@
 import { FormattedEvent, SchemaField } from '@/components/types'
-import { ApiPromise, WsProvider } from '@polkadot/api'
+import { ApiPromise } from '@polkadot/api'
 import { TrueApi } from '@truenetworkio/sdk'
 import { CREDENTIALS_PALLET_NAME } from '@truenetworkio/sdk/dist/pallets/credentials/state'
 
@@ -174,6 +174,11 @@ export const decodeEvent = (event: any, api: ApiPromise): FormattedEvent | null 
               name: 'Schema',
               value: JSON.stringify(data['schema']),
               description: 'Schema structure created on-chain'
+            },
+            {
+              name: 'Issuer Hash',
+              value: JSON.stringify(data['issuerHash']),
+              description: 'Hash of the issuer creating the schema'
             }
           ]
         }
@@ -248,8 +253,13 @@ export const decodeEvent = (event: any, api: ApiPromise): FormattedEvent | null 
           parameters: [
             {
               name: 'Algorithm ID',
-              value: data['algorithm_id'],
+              value: data['algorithmId'],
               description: 'Unique identifier for the algorithm'
+            },
+            {
+              name: 'Schemas',
+              value: data['schemaHashes'].map((schema: any) => schema.toString()).join(', '),
+              description: 'Schema hashes associated with the algorithm'
             }
           ]
         }
@@ -262,6 +272,16 @@ export const decodeEvent = (event: any, api: ApiPromise): FormattedEvent | null 
               name: 'Algorithm Result',
               value: data['result'],
               description: 'Result of the reputation algorithm.'
+            },
+            {
+              name: 'Issuer Hash',
+              value: data['issuerHash'],
+              description: 'The hash of the issuer who created the attestations used by the algorithm.'
+            },
+            {
+              name: 'Account Id',
+              value: data['accountId'],
+              description: "User's Account ID for whom the reputation is calculated."
             }
           ]
         }

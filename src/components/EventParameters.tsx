@@ -95,7 +95,7 @@ export const EventParameters: React.FC<EventParametersProps> = ({ parameters }) 
             </Tooltip>
           </TooltipProvider>
           <div className="flex flex-col items-center gap-2">
-            {param.name == "Controllers" ? param.value.split(',').map((controller) => {
+            {["Controllers", "Schemas"].includes(param.name) ? param.value.split(',').map((controller) => {
               return (
                 <div key={controller} className='flex flex-row w-full justify-end gap-2'>
                   <code key={controller} className="text-xs sm:text-sm bg-[#B3D9FE]/30 rounded px-2 py-1 overflow-x-auto max-w-[200px] sm:max-w-none">

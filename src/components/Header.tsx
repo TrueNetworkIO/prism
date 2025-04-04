@@ -15,7 +15,7 @@ export function Header() {
               className="h-10 w-auto"
             /> prism
           </Link>
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-4">
             <Link 
               href="https://docs.truenetwork.io" 
               target='_blank'

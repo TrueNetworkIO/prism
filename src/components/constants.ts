@@ -2,7 +2,9 @@ export const FILTERED_EVENTS = [
   "issuersModule.IssuerCreated",
   'credentialsModule.SchemaCreated',
   "credentialsModule.AttestationCreated",
+  "credentialsModule.AttestationUpdated",
   'algorithmsModule.AlgorithmAdded',
+  'algorithmsModule.AlgoResult',
   'balances.Transfer',
   'balances.Reserved',
   'balances.Unreserved',
@@ -10,11 +12,11 @@ export const FILTERED_EVENTS = [
 ] as string[]
 
 export const EVENT_TYPES = {
-  ATTESTATION: 'AttestationCreated',
+  ATTESTATION: ['AttestationCreated', 'AttestationUpdated'],
   ISSUER: 'IssuerCreated',
   SCHEMA: 'SchemaCreated',
-  ALGORITHM: 'AlgorithmAdded'
-} as const
+  ALGORITHM: ['AlgorithmAdded', 'AlgoResult'],
+}
 
 export const BLOCK_ERRORS = {
   STATE_DISCARDED: '4003',

@@ -86,7 +86,7 @@ export function TransactionDetails({ hash }: TransactionDetailsProps) {
               }
             }
 
-            if (event.name === EVENT_TYPES.ATTESTATION) {
+            if (EVENT_TYPES.ATTESTATION.includes(event.name)) {
               const schemaHash = event.parameters[3].value;
               if (schemaHash) {
                 try {
@@ -148,10 +148,10 @@ export function TransactionDetails({ hash }: TransactionDetailsProps) {
   }
 
   const groupedEvents = {
-    attestations: state.events.filter(e => e.name === EVENT_TYPES.ATTESTATION),
+    attestations: state.events.filter(e => EVENT_TYPES.ATTESTATION.includes(e.name)),
     issuers: state.events.filter(e => e.name === EVENT_TYPES.ISSUER),
     schemas: state.events.filter(e => e.name === EVENT_TYPES.SCHEMA),
-    algorithms: state.events.filter(e => e.name === EVENT_TYPES.ALGORITHM)
+    algorithms: state.events.filter(e => EVENT_TYPES.ALGORITHM.includes(e.name))
   }
 
   return (
